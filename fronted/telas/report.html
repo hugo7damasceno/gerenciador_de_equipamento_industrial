@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="pt-br">
+
+  <head>
+    <meta charset="utf-8">
+    <title>Report</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/bootstrap.css">
+  </head>
+  <body>
+      
+    <div class="row bg-gradient-primary p-2 text-white fixed-top" style="position: static">
+        <div class="col-12 col-md-7 text-left">
+          <img src="../img/login.png" height="45">
+        </div>
+        <hr>
+        <div class="col-6 col-md-1 mt-3">
+            <h6> <b>Usuário </b></h6>
+        </div>
+        <div class="col-6 col-md-1 mt-1">
+            <span>
+                <a class="btn btn-primary" data-toggle='tooltip' title='Página Inicial' href="../telas/login.html">
+                    <b>Sair</b>
+                </a>
+            </span>
+        </div>
+    </div>
+
+    <table class="table table-striped">
+        <thead>
+          <tr>
+            <th scope="col">Usr</th>
+            <th scope="col">Data</th>
+            <th scope="col">Hora</th>
+            <th scope="col">Equipamento</th>
+            <th scope="col">Tempo</th>
+            <th scope="col">Vel-Med</th>
+            <th scope="col">Temp</th>
+            <th scope="col">Umidt</th>
+            <th scope="col">Produção</th>
+          </tr>
+        </thead>
+        <tbody>
+            <tr>
+              <th scope="row">hugonline</th>
+              <td>07/02/21</td>
+              <td>15:00</td>
+              <td>Esteira</td>
+              <td>2:00</td>
+              <td>2 m/s</td>
+              <td>28 °C</td>
+              <td>8%</td>
+              <td>100%</td>
+            </tr>
+            <tr>
+                <th scope="row">valdisio</th>
+                <td>10/02/21</td>
+                <td>08:00</td>
+                <td>Esteira</td>
+                <td>1:00</td>
+                <td>2 m/s</td>
+                <td>28 °C</td>
+                <td>8%</td>
+                <td>99%</td>
+            </tr>
+        </tbody>
+      </table>
+      <hr>
+      <div class="col-lg-12 mt-3" style="text-align: right;"  >
+          <button type="submit" class="btn btn-primary">Gerar PDF</button>
+        </div>
+    
+      <div class="row bg-gradient-primary p-2 fixed-bottom text-white">
+        <div class="col-md-12 mt-2 text-center">
+            &copy;LOGIN
+        </div>
+        <div class="col-md-3 text-left">
+        </div>
+      </div>
+  
+    </body>
+</html>
