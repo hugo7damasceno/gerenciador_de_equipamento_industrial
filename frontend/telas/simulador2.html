@@ -7,6 +7,10 @@
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/bootstrap.css">
     <link rel="stylesheet" href="../css/sidebar.css">
+
+    <script>
+        const URL = 'ws://broker.mqttdashboard.com:8000/mqtt';
+    </script>
  </head>
 
 
@@ -39,6 +43,12 @@
                         <a href="simulador.html">  <span style="margin-left:10px;"> Remove</span> </a>
                     </li>
                     <li>
+                        <a href="simulador.html">  <span style="margin-left:10px;"> Start</span> </a>
+                    </li>
+                    <li>
+                        <a href="simulador.html">  <span style="margin-left:10px;"> Stop</span> </a>
+                    </li>
+                    <li>
                         <a href="#">  <span style="margin-left:10px;"> Speed up</span> </a>
                     </li>
                     <li>
@@ -53,10 +63,10 @@
                    
                 </ul>
             </div>
-            <h4>Esteira de Produção 0000x</h4>
+            <h4 id="name">Esteira de Produção</h4>
             <div class="row">
                     <div class="form-border border col-3 col-md-2 text-center">
-                        <h6>Temperatura</h6>
+                        <h6 id="temperature">Temperatura</h6>
                         <img src="../img/temp.png" height="80">
                             <h6 class="mt-2">20°C</h6>
                     </div>
@@ -106,5 +116,7 @@
             </div>
           </div>
     </body>
+    <script src="vendors.app.bundle.js"></script>
+    <script src="app.bundle.js"></script>
 
 </html>

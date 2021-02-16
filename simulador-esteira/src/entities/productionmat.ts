@@ -13,6 +13,10 @@ class ProductionMat {
    */
   public maxSpeed: number
   public acceleration: number
+  //Temperatura ambiente
+  public temp: number
+    //Umidade ambiente
+    public humid: number
   /**
   * Tamanho da esteira em metros.
   * Usado para transformações.
@@ -25,7 +29,9 @@ class ProductionMat {
     this.effect = effect
     this.acceleration = 10
     this.meters = 10
-    this.maxSpeed = 8
+    this.maxSpeed = 4
+    this.temp = 20
+    this.humid= 60
     this.setAcceleration()
     this.getAcceleration()    
 
@@ -112,6 +118,25 @@ class ProductionMat {
 
     return acceleration
   }
+
+  /**
+   * Retorna a temperatura da esteira.
+   */
+  public getTemperature(){
+    let temperature = (this.temp + this.temp * this.getVelocity()/100)
+    this.publish('temperature', temperature)
+
+    return temperature
+  }
+  /**
+   * Retorna a umidade da esteira.
+   */
+  public getHumidity(){
+    let humidity = (this.humid - this.getTemperature()/100)
+    this.publish('humidity', humidity)
+
+    return humidity
+  }
   /**
   * Para a esteira de vez.
   */
@@ -175,6 +200,14 @@ class ProductionMat {
       let size = document.getElementById("size")
       size.innerHTML = `
         Tamanho : ${this.meters} m. 
+      `
+      let temperature = document.getElementById("temperature")
+      temperature.innerHTML = `
+        Temperatura : ${this.getTemperature().toFixed(2)} °C
+      `
+      let humidity = document.getElementById("humidity")
+      humidity.innerHTML = `
+        Umidade : ${this.getHumidity().toFixed(2)} %
       `
 
       if (!modal.classList.contains("alreadySet")) {

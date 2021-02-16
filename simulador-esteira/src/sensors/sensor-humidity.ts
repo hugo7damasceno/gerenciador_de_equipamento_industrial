@@ -1,4 +1,5 @@
-import {ISensor} from '../sensors/isensor';
+// sensores estão definidos em productionmat.ts
+/**import {ISensor} from './isensor';
 import { ProductionMat } from '../entities/productionmat';
 import * as Mqtt from 'mqtt';
 import { URL } from 'url';
@@ -25,4 +26,4 @@ class SensorHumidity implements ISensor{
     }
 }
 
-export {SensorHumidity}
+export {SensorHumidity}*/

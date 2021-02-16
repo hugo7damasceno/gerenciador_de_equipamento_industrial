@@ -1,4 +1,5 @@
-import {ISensor} from '../sensors/isensor';
+// sensores estão definidos em productionmat.ts
+/**import {ISensor} from '../sensors/isensor';
 import { ProductionMat } from '../entities/productionmat';
 import * as Mqtt from 'mqtt';
 import { URL } from 'url';
@@ -13,11 +14,11 @@ class SensorVelocity implements ISensor{
     constructor(){
         this.client.on('connect', function (){
             let channel = 'channel' + Math.random().toString()
-         /*   client.subscribe(channel, function(err){
+            client.subscribe(channel, function(err){
                 if(err){
 
                 }
-            })*/
+            })
         })
     }
     
@@ -30,4 +31,4 @@ class SensorVelocity implements ISensor{
     }
 }
 
-export {SensorVelocity}
+export {SensorVelocity}*/
