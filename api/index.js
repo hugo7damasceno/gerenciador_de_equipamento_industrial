@@ -1,6 +1,6 @@
-const express = require('express');
-const bodyParser = require('body-parser');
-const mysql = require('mysql');
+const express = require('express')
+const bodyParser = require('body-parser')
+const mysql = require('mysql')
 const mqtt = require('mqtt')
 
 // servidor
@@ -9,9 +9,7 @@ const app = express();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-app.listen(3000, function(){
-  console.log('----[LOG] Servidor rodando em http://localhost:3000.');
-});
+app.listen(3000, () => console.log('----[LOG] Servidor rodando em http://localhost:3000.'));
 
 // banco de dados
 const con = mysql.createConnection({
@@ -50,6 +48,18 @@ async function AddEquip(params) {
   }  
 }
 
+async function StopEquip(id_equip) {
+  try {
+    client.publish(`minha_industria/equipamento/${id_equip}/stop`, '1')
+
+    await con.query(`UPDATE equipamento set parado = 0 WHERE id = ${id_equip};`, (error) => {
+      if (error) console.log('Erro ao inserir mqtt recebido: ' + error)
+    })
+  } catch (error) {
+    console.log('Erro ao inserir mqtt recebido: ' + error)
+  }
+}
+
 // mqtt
 const client = mqtt.connect('ws://broker.mqttdashboard.com:8000/mqtt')
 
@@ -60,12 +70,12 @@ client.on('connect', () => {
     if (error) throw error
 
     result.forEach(equip => {
-      client.subscribe(`minha_industria/equipamento/${equip.id}`)
+      // client.subscribe(`minha_industria/equipamento/${equip.id}`)
       client.subscribe(`minha_industria/equipamento/${equip.id}/velocity`)
       client.subscribe(`minha_industria/equipamento/${equip.id}/acceleration`)
       client.subscribe(`minha_industria/equipamento/${equip.id}/humidity`)
       client.subscribe(`minha_industria/equipamento/${equip.id}/temperature`)
-      client.subscribe(`minha_industria/equipamento/${equip.id}/config`)
+      // client.subscribe(`minha_industria/equipamento/${equip.id}/config`)
     });
 
     console.log("----[LOG] Subscribes mqtt estabelecidos.")
@@ -88,6 +98,10 @@ client.on('message', (topic, message) => {
       GravaDadoEquip(id_equip, 'umidade', message)
     } else if (campo === 'temperature') {
       GravaDadoEquip(id_equip, 'temperatura', message)
+
+      if (message > 25) {
+        StopEquip(id_equip)
+      }
     }
   }
 
