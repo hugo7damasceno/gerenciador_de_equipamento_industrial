@@ -99,7 +99,7 @@ client.on('message', (topic, message) => {
     } else if (campo === 'temperature') {
       GravaDadoEquip(id_equip, 'temperatura', message)
 
-      if (message > 25) {
+      if (message > 27) {
         StopEquip(id_equip)
       }
     }

@@ -29,8 +29,8 @@ class ProductionMat {
     this.effect = effect
     this.acceleration = 10
     this.meters = 10
-    this.maxSpeed = 4
-    this.temp = 20
+    this.maxSpeed = 6
+    this.temp = 26
     this.humid= 60
     this.setAcceleration()
     this.getAcceleration()    
@@ -123,7 +123,7 @@ class ProductionMat {
    * Retorna a temperatura da esteira.
    */
   public getTemperature(){
-    let temperature = (this.temp + this.temp * this.getVelocity()/100)
+    let temperature = (this.temp + this.temp * Math.abs(this.getVelocity())/100)
     this.publish('temperature', temperature)
 
     return temperature
